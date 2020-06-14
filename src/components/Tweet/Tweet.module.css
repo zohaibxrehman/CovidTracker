@@ -1,0 +1,15 @@
+.container {
+    margin-top: 50px;
+    margin-right: 20px;
+    height: 95%;
+    width: 90%;
+    /* justify-content: center; */
+}
+
+@media only screen and (max-width: 770px) {
+    .container {
+        height: 500px;
+        width: 80%;
+        margin: 2% auto !important;
+    }
+}
