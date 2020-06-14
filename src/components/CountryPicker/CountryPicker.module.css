@@ -3,3 +3,9 @@
     height: 20%;
     margin-top: 20px !important;
   }
+
+  @media only screen and (max-width: 770px) {
+    .formControl {
+      width: 90%;
+    }
+  }
