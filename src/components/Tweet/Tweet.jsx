@@ -8,7 +8,7 @@ const Tweet = () => {
         <div className={styles.container}>
             <TwitterTimelineEmbed
                 sourceType="profile"
-                screenName="WHO"
+                screenName="COVID19Tracking"
                 autoHeight
                 // options={{height: 700}}
             />
