@@ -5,6 +5,7 @@ import { fetchData } from './api';
 
 class App extends React.Component {
 	constructor() {
+		super();
 		this.state = {
 			data: {}
 		}
@@ -16,9 +17,11 @@ class App extends React.Component {
 	}
 
 	render() {
+		const { data } = this.state;
+
 		return (
 			<div>
-				<Cards />
+				<Cards data={ data }/>
 				<CountryPicker />
 				<Chart />
 			</div>
