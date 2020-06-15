@@ -24,10 +24,9 @@ const Map = () => {
 				filteredCountries.push(country);
 			}
 		});
-		console.log(filteredCountries);
 		return (
 			<div className={styles.mapControl}>
-				<GoogleMap defaultZoom={8} defaultCenter={{ lat: 42.546245, lng: 1.601554 }}>
+				<GoogleMap defaultZoom={2} defaultCenter={{ lat: 8, lng: -1 }}>
 					{filteredCountries.map((country, i) => (
 						<Marker
 							key={i}
@@ -45,7 +44,7 @@ const Map = () => {
 	const Wrapper = withScriptjs(withGoogleMap(GMap));
 
 	return (
-		<div style={{ width: '50vw', height: '50vh' }}>
+		<div className={styles.wrapControl}>
 			<Wrapper
 				googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process
 					.env.REACT_APP_GOOGLE_KEY}`}

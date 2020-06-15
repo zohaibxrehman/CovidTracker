@@ -1,14 +1,21 @@
 .mapControl {
-    width: 30%;
-    height: 20%;
-    margin-top: 20px !important;
-    /* text-align: center; */
-    /* border-left: 2px solid rgb(199,99,199) !important; */
-    /* border-bottom: 3px solid rgb(199,99,199) !important; */
-  }
-  
-  @media only screen and (max-width: 770px) {
-    .mapControl {
-      width: 90%;
-    }
-  }
+	width: 100%;
+	height: 100%;
+	/* text-align: center; */
+	/* border-left: 2px solid rgb(199,99,199) !important; */
+	/* border-bottom: 3px solid rgb(199,99,199) !important; */
+}
+
+.wrapControl {
+	width: 90%;
+	height: 50%;
+	margin-top: 20px !important;
+}
+
+@media only screen and (max-width: 770px) {
+	.wrapControl {
+		height: 500px;
+		width: 80%;
+		margin: 2% auto !important;
+	}
+}
