@@ -38,8 +38,8 @@ class App extends React.Component {
 					</div>
 				</Grid>
 				<Grid item md={4} xs={12}>
-					<Tweet />
 					<Map />
+					<Tweet />
 				</Grid>
 			</Grid>
 		);
