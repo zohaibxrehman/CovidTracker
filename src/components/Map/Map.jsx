@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 import styles from './Map.module.css';
-import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps';
-import { fetchCountries } from '../../api';
+import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { fetchCountries, fetchData } from '../../api';
 
 const codeToLatLng = require('./codeToLatLng.json');
 
 const Map = () => {
 	const [ countries, setCountries ] = useState([]);
-
+	const [ clickedCountry, setClickedCountry ] = useState(null);
 	useEffect(() => {
 		const fetchAPI = async () => {
 			setCountries(await fetchCountries());
@@ -34,8 +34,30 @@ const Map = () => {
 								lat: Number(codeToLatLng[country.iso2]['coordinate'][0]),
 								lng: Number(codeToLatLng[country.iso2]['coordinate'][1])
 							}}
+							onClick={async () => {
+								const covidData = await fetchData(country.name);
+								setClickedCountry({ name: country.name, iso2: country.iso2, ...covidData });
+							}}
 						/>
 					))}
+					{clickedCountry && (
+						<InfoWindow
+							onCloseClick={() => {
+								setClickedCountry(null);
+							}}
+							position={{
+								lat: Number(codeToLatLng[clickedCountry.iso2]['coordinate'][0]),
+								lng: Number(codeToLatLng[clickedCountry.iso2]['coordinate'][1])
+							}}
+						>
+							<div>
+								<h2>{clickedCountry.name}</h2>
+								<p>Cofirmed: {clickedCountry.confirmed.value}</p>
+								<p>Recovered: {clickedCountry.recovered.value}</p>
+								<p>Deaths: {clickedCountry.deaths.value}</p>
+							</div>
+						</InfoWindow>
+					)}
 				</GoogleMap>
 			</div>
 		);
