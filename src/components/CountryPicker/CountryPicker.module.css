@@ -1,11 +1,14 @@
 .formControl {
-    width: 30%;
-    height: 20%;
-    margin-top: 20px !important;
-  }
+  width: 30%;
+  height: 20%;
+  margin-top: 20px !important;
+  /* text-align: center; */
+  /* border-left: 2px solid rgb(199,99,199) !important; */
+  /* border-bottom: 3px solid rgb(199,99,199) !important; */
+}
 
-  @media only screen and (max-width: 770px) {
-    .formControl {
-      width: 90%;
-    }
+@media only screen and (max-width: 770px) {
+  .formControl {
+    width: 90%;
   }
+}
