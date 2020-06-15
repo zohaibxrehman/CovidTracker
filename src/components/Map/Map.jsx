@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Map.module.css';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import { fetchCountries, fetchData } from '../../api';
+import mapStyles from './mapStyles';
 
 const codeToLatLng = require('./codeToLatLng.json');
 
@@ -26,7 +27,7 @@ const Map = () => {
 		});
 		return (
 			<div className={styles.mapControl}>
-				<GoogleMap defaultZoom={2} defaultCenter={{ lat: 8, lng: -1 }}>
+				<GoogleMap defaultZoom={2} defaultCenter={{ lat: 8, lng: -1 }} defaultOptions={{ styles: mapStyles }}>
 					{filteredCountries.map((country, i) => (
 						<Marker
 							key={i}
@@ -37,6 +38,10 @@ const Map = () => {
 							onClick={async () => {
 								const covidData = await fetchData(country.name);
 								setClickedCountry({ name: country.name, iso2: country.iso2, ...covidData });
+							}}
+							icon={{
+								url: `/virus.svg`,
+								scaledSize: new window.google.maps.Size(15, 15)
 							}}
 						/>
 					))}
