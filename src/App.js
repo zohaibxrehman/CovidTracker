@@ -12,7 +12,7 @@ class App extends React.Component {
 		this.state = {
 			data: {},
 			country: ''
-		}
+		};
 	}
 
 	async componentDidMount() {
@@ -23,20 +23,19 @@ class App extends React.Component {
 	handleCountryChange = async (country) => {
 		const data = await fetchData(country);
 		this.setState({ data, country: country });
-	}
+	};
 
 	render() {
 		const { data, country } = this.state;
-		console.log(process.env.REACT_APP_GOOGLE_KEY);
 		return (
 			<Grid container spacing={1}>
 				<Grid item md={8} xs={12}>
-				<div className={styles.container}>
-					<img className={styles.image} src={image} alt="COVID-19" />
-					<CountryPicker handleCountryChange={this.handleCountryChange}/>
-					<Cards data={ data }/>
-					<Chart data={data} country={country}/>
-				</div>
+					<div className={styles.container}>
+						<img className={styles.image} src={image} alt="COVID-19" />
+						<CountryPicker handleCountryChange={this.handleCountryChange} />
+						<Cards data={data} />
+						<Chart data={data} country={country} />
+					</div>
 				</Grid>
 				<Grid item md={4} xs={12}>
 					<Tweet />
