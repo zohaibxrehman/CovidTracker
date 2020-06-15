@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Cards, Chart, CountryPicker, Tweet } from './components';
+import { Cards, Chart, CountryPicker, Tweet, Map } from './components';
 import { Grid } from '@material-ui/core';
 import { fetchData } from './api';
 import styles from './App.module.css';
@@ -27,7 +27,7 @@ class App extends React.Component {
 
 	render() {
 		const { data, country } = this.state;
-
+		console.log(process.env.REACT_APP_GOOGLE_KEY);
 		return (
 			<Grid container spacing={1}>
 				<Grid item md={8} xs={12}>
@@ -40,6 +40,7 @@ class App extends React.Component {
 				</Grid>
 				<Grid item md={4} xs={12}>
 					<Tweet />
+					<Map />
 				</Grid>
 			</Grid>
 		);
