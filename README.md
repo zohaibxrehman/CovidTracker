@@ -1,6 +1,8 @@
 ## The Covid Tracker
 
-CovidTracker is a <strong>React</strong> web app which offers the latest <strong>COVID-19 data visualization</strong>. Along with the core data, data visualization is provided using <strong>Google Maps</strong> and relevant <strong>COVID-19 tweets</strong> for staying up to date. 
+CovidTracker is a <strong>React</strong> web app which offers the latest <strong>COVID-19 data visualization</strong>. Along with the core data, data visualization is provided using <strong>Google Maps</strong> and relevant <strong>COVID-19 tweets</strong> for staying up to date.
+
+Visit the website @ https://zohaibxrehman.github.io/CovidTracker/
 
 ![](https://i.imgur.com/GVYxUDt.gif)
 
