@@ -59,7 +59,7 @@ const Map = () => {
 							}}
 							icon={{
 								// path: window.google.maps.SymbolPath.CIRCLE,
-								url: '/virus.svg',
+								url: 'https://raw.githubusercontent.com/zohaibxrehman/CovidTracker/7ca9be73953c0ec8a814c204ca9f3aaf1a272959/public/virus.svg',
 								scaledSize: new window.google.maps.Size(20, 20),
 								// scale: 10,
 								fillColor: 'red',
