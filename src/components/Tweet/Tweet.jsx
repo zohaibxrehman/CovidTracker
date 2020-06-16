@@ -1,19 +1,14 @@
 import React from 'react';
-import {TwitterTimelineEmbed} from 'react-twitter-embed'
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 import styles from './Tweet.module.css';
 
 const Tweet = () => {
-    return (
-        <div className={styles.container}>
-            <TwitterTimelineEmbed
-                sourceType="profile"
-                screenName="COVID19Tracking"
-                autoHeight
-                // options={{height: 700}}
-            />
-        </div>
-    );
+	return (
+		<div className={styles.container}>
+			<TwitterTimelineEmbed sourceType="profile" screenName="WHO" autoHeight />
+		</div>
+	);
 };
 
 export default Tweet;
