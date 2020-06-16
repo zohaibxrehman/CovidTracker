@@ -1,6 +1,6 @@
 {
 	"name": "covid-tracker",
-	"homepage": "http://zohaibxrehman.github.io/CovidTracker",
+	"homepage": ".",
 	"version": "0.1.0",
 	"private": true,
 	"engines": {
