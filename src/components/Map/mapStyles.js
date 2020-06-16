@@ -66,7 +66,7 @@ export default [
 		]
 	},
 	{
-		featureType: 'road.highway',
+		featureType: 'road.arterial',
 		elementType: 'all',
 		stylers: [
 			{
@@ -78,7 +78,7 @@ export default [
 		]
 	},
 	{
-		featureType: 'road.arterial',
+		featureType: 'road.highway',
 		elementType: 'all',
 		stylers: [
 			{
