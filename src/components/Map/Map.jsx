@@ -39,7 +39,12 @@ const Map = () => {
 				<GoogleMap
 					defaultZoom={2}
 					defaultCenter={{ lat: 8, lng: -1 }}
-					defaultOptions={{ styles: mapStyles, disableDefaultUI: true }}
+					defaultOptions={{
+						styles: mapStyles,
+						disableDefaultUI: true,
+						zoomControl: true,
+						fullscreenControl: true
+					}}
 				>
 					{filteredCountries.map((country, i) => (
 						<Marker
