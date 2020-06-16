@@ -20,7 +20,7 @@ const Map = () => {
 
 	const GMap = () => {
 		let filteredCountries = [];
-		countries.map((country) => {
+		countries.forEach((country) => {
 			if (codeToLatLng[country.iso2] !== undefined) {
 				filteredCountries.push(country);
 			}
