@@ -39,7 +39,7 @@ export const fetchCountries = async () => {
 			return { name: country.name, iso2: country.iso2 };
 		});
 		let filter2 = [];
-		filter1.map((country, i) => {
+		filter1.forEach((country, i) => {
 			if (country.iso2 !== undefined) {
 				filter2.push(country);
 			}
