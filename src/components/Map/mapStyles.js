@@ -1,24 +1,6 @@
 export default [
 	{
 		featureType: 'all',
-		elementType: 'all',
-		stylers: [
-			{
-				saturation: '32'
-			},
-			{
-				lightness: '-3'
-			},
-			{
-				visibility: 'on'
-			},
-			{
-				weight: '1.18'
-			}
-		]
-	},
-	{
-		featureType: 'administrative',
 		elementType: 'labels',
 		stylers: [
 			{
@@ -28,31 +10,49 @@ export default [
 	},
 	{
 		featureType: 'landscape',
-		elementType: 'labels',
+		elementType: 'all',
 		stylers: [
 			{
-				visibility: 'off'
+				visibility: 'on'
+			},
+			{
+				color: '#f3f4f4'
 			}
 		]
 	},
 	{
 		featureType: 'landscape.man_made',
-		elementType: 'all',
+		elementType: 'geometry',
 		stylers: [
 			{
-				saturation: '-70'
+				weight: 0.9
 			},
 			{
-				lightness: '14'
+				visibility: 'off'
 			}
 		]
 	},
 	{
-		featureType: 'poi',
-		elementType: 'labels',
+		featureType: 'poi.park',
+		elementType: 'geometry.fill',
 		stylers: [
 			{
-				visibility: 'off'
+				visibility: 'on'
+			},
+			{
+				color: '#83cead'
+			}
+		]
+	},
+	{
+		featureType: 'road',
+		elementType: 'all',
+		stylers: [
+			{
+				visibility: 'on'
+			},
+			{
+				color: '#ffffff'
 			}
 		]
 	},
@@ -66,11 +66,26 @@ export default [
 		]
 	},
 	{
-		featureType: 'transit',
-		elementType: 'labels',
+		featureType: 'road.highway',
+		elementType: 'all',
 		stylers: [
 			{
-				visibility: 'off'
+				visibility: 'on'
+			},
+			{
+				color: '#fee379'
+			}
+		]
+	},
+	{
+		featureType: 'road.arterial',
+		elementType: 'all',
+		stylers: [
+			{
+				visibility: 'on'
+			},
+			{
+				color: '#fee379'
 			}
 		]
 	},
@@ -79,22 +94,10 @@ export default [
 		elementType: 'all',
 		stylers: [
 			{
-				saturation: '100'
+				visibility: 'on'
 			},
 			{
-				lightness: '-14'
-			}
-		]
-	},
-	{
-		featureType: 'water',
-		elementType: 'labels',
-		stylers: [
-			{
-				visibility: 'off'
-			},
-			{
-				lightness: '12'
+				color: '#7fc8ed'
 			}
 		]
 	}

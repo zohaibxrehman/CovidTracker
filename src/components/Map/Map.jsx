@@ -25,9 +25,22 @@ const Map = () => {
 				filteredCountries.push(country);
 			}
 		});
+
+		let covidData = {};
+
+		filteredCountries.forEach(async (country) => {
+			let countryName = country.name;
+			let countryData = await fetchData(countryName);
+			covidData[country.name] = countryData;
+		});
+
 		return (
 			<div className={styles.mapControl}>
-				<GoogleMap defaultZoom={2} defaultCenter={{ lat: 8, lng: -1 }} defaultOptions={{ styles: mapStyles }}>
+				<GoogleMap
+					defaultZoom={2}
+					defaultCenter={{ lat: 8, lng: -1 }}
+					defaultOptions={{ styles: mapStyles, disableDefaultUI: true }}
+				>
 					{filteredCountries.map((country, i) => (
 						<Marker
 							key={i}
@@ -35,17 +48,24 @@ const Map = () => {
 								lat: Number(codeToLatLng[country.iso2]['coordinate'][0]),
 								lng: Number(codeToLatLng[country.iso2]['coordinate'][1])
 							}}
-							onClick={async () => {
-								const covidData = await fetchData(country.name);
-								setClickedCountry({ name: country.name, iso2: country.iso2, ...covidData });
+							onClick={() => {
+								let countryData = covidData[country.name];
+								setClickedCountry({ name: country.name, iso2: country.iso2, ...countryData });
 							}}
 							icon={{
-								url: `/virus.svg`,
-								scaledSize: new window.google.maps.Size(15, 15)
+								// path: window.google.maps.SymbolPath.CIRCLE,
+								url: '/virus.svg',
+								scaledSize: new window.google.maps.Size(20, 20),
+								// scale: 10,
+								fillColor: 'red',
+								fillOpacity: 0.2,
+								strokeColor: 'white',
+								strokeWeight: 0.5
 							}}
 						/>
 					))}
-					{clickedCountry && (
+					{clickedCountry &&
+					clickedCountry.confirmed && (
 						<InfoWindow
 							onCloseClick={() => {
 								setClickedCountry(null);
