@@ -14,7 +14,7 @@ React.js
 Chart.js
 Axios
 Material UI
-Google Maps API
+Google Maps API (with custom styling)
 Twitter API
 COVID 19 Data: https://covid19.mathdro.id/api
 ```
