@@ -56,7 +56,7 @@ export const fetchCompleteData = async () => {
 		let countriesData = [];
 		countries.forEach(async (country) => {
 			let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {params: {
-				address: country.name,
+				address: country.name+' country',
 				key: process.env.REACT_APP_GOOGLE_KEY
 			}});
 			if(response.status === 200 && response.data.results.length > 0){
