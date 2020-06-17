@@ -65,7 +65,7 @@ export const fetchCompleteData = async () => {
 				let countryCases = await axios.get(`${url}/countries/${country.name}`);
 				// console.log(`${country.name}: (${lat}, ${lng}), ${countryCases}`)
 				if(country && !isNaN(lat) && countryCases && !isNaN(countryCases.data.confirmed.value)){
-					let scale = 1 + Math.log2(countryCases.data.confirmed.value);
+					let scale = 1 + 1.1 * Math.log2(countryCases.data.confirmed.value);
 					countriesData.push({name: country.name, location: {lat: lat, lng: lng}, ...countryCases.data, scale: scale});
 				}
 			} else {
