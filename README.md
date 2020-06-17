@@ -4,7 +4,7 @@ CovidTracker is a <strong>React</strong> web app which offers the latest <strong
 
 Visit the website @ https://zohaibxrehman.github.io/CovidTracker/
 
-![](https://i.imgur.com/GVYxUDt.gif)
+![](https://i.imgur.com/UNhAN9b.gif)
 
 ## Mobile friendly
 
