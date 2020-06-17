@@ -56,7 +56,7 @@ export const fetchCompleteData = async () => {
 		let countriesData = [];
 		countries.forEach(async (country) => {
 			let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {params: {
-				address: country.name+' country',
+				address: 'country ' + country.name,
 				key: process.env.REACT_APP_GOOGLE_KEY
 			}});
 			if(response.status === 200 && response.data.results.length > 0){
@@ -65,7 +65,7 @@ export const fetchCompleteData = async () => {
 				let countryCases = await axios.get(`${url}/countries/${country.name}`);
 				// console.log(`${country.name}: (${lat}, ${lng}), ${countryCases}`)
 				if(country && !isNaN(lat) && countryCases && !isNaN(countryCases.data.confirmed.value)){
-					let scale = 2 + Math.log2(countryCases.data.confirmed.value);
+					let scale = 1 + Math.log2(countryCases.data.confirmed.value);
 					countriesData.push({name: country.name, location: {lat: lat, lng: lng}, ...countryCases.data, scale: scale});
 				}
 			} else {

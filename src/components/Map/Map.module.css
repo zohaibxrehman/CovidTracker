@@ -1,21 +1,12 @@
-.mapControl {
-	width: 100%;
-	height: 100%;
-	/* text-align: center; */
-	/* border-left: 2px solid rgb(199,99,199) !important; */
-	/* border-bottom: 3px solid rgb(199,99,199) !important; */
-}
-
 .wrapControl {
-	width: 90%;
+	width: 90% !important;
 	height: 50%;
-	margin-top: 10px !important;
+	margin: auto auto !important;
 }
 
 @media only screen and (max-width: 770px) {
 	.wrapControl {
-		height: 500px;
-		width: 80%;
-		margin: 2% auto !important;
+		height: 500px !important;
+		width: 80% !important;
 	}
 }
