@@ -1,111 +1,74 @@
 import React, { useState, useEffect } from 'react';
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
-import styles from './Map.module.css';
-import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps';
-import { fetchCountries, fetchData } from '../../api';
 import mapStyles from './mapStyles';
+import divStyles from './Map.module.css';
+import { fetchCompleteData } from '../../api';
+ 
 
-const codeToLatLng = require('./codeToLatLng.json');
+const center = { lat: 8, lng: -1 };
+const style = {width:'40vw', height:'50vh'};
+const options = {styles: mapStyles, disableDefaultUI: true, zoomControl: true};
 
 const Map = () => {
-	const [ countries, setCountries ] = useState([]);
-	const [ clickedCountry, setClickedCountry ] = useState(null);
-	useEffect(() => {
-		const fetchAPI = async () => {
-			setCountries(await fetchCountries());
+    const [countriesData, setCountriesData] = useState([]);
+    const [selected, setSelected] = useState(null);
+
+    useEffect(async () => {
+        async function fetchData(){
+            const data = await fetchCompleteData();
+            console.log('WORKS->', data);
+            setCountriesData(data);
 		};
+        fetchData();
+    }, [])
 
-		fetchAPI();
-	}, []);
+    const {isLoaded, loadError} = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY
+    })
 
-	const GMap = () => {
-		let filteredCountries = [];
-		countries.forEach((country) => {
-			if (codeToLatLng[country.iso2] !== undefined) {
-				filteredCountries.push(country);
-			}
-		});
+    if (loadError) return "Error loading maps";
+    if (!isLoaded) return "Loading Maps...";
+    console.log('STATE->', countriesData);
 
-		let covidData = {};
+    // if (mapData.length === 0) return "Loading Map Data...";
 
-		filteredCountries.forEach(async (country) => {
-			let countryName = country.name;
-			let countryData = await fetchData(countryName);
-			covidData[country.name] = countryData;
-		});
+    return (
+        <div>
+            <GoogleMap mapContainerStyle={style} zoom={2} center={center} options={options}>
+                {(countriesData.map((country, id) => (
+                    <Marker key={'1'} position={country.location} icon={{
+                        path: window.google.maps.SymbolPath.CIRCLE,
+                        // url: 'https://raw.githubusercontent.com/zohaibxrehman/CovidTracker/7ca9be73953c0ec8a814c204ca9f3aaf1a272959/public/virus.svg',
+                        // scaledSize: new window.google.maps.Size(20, 20),
+                        scale: 20,
+                        fillColor: 'red',
+                        fillOpacity: 0.2,
+                        strokeColor: 'white',
+                        strokeWeight: 0.5,
+                        }}
+                        onClick={()=>{
+                            setSelected(country);
+                        }}
+                    >
+                    </Marker>
+                )))}
 
-		return (
-			<div className={styles.mapControl}>
-				<GoogleMap
-					defaultZoom={2}
-					defaultCenter={{ lat: 8, lng: -1 }}
-					defaultOptions={{
-						styles: mapStyles,
-						disableDefaultUI: true,
-						zoomControl: true,
-						fullscreenControl: true
-					}}
-				>
-					{filteredCountries.map((country, i) => (
-						<Marker
-							key={i}
-							position={{
-								lat: Number(codeToLatLng[country.iso2]['coordinate'][0]),
-								lng: Number(codeToLatLng[country.iso2]['coordinate'][1])
-							}}
-							onClick={() => {
-								let countryData = covidData[country.name];
-								setClickedCountry({ name: country.name, iso2: country.iso2, ...countryData });
-							}}
-							icon={{
-								// path: window.google.maps.SymbolPath.CIRCLE,
-								url: 'https://raw.githubusercontent.com/zohaibxrehman/CovidTracker/7ca9be73953c0ec8a814c204ca9f3aaf1a272959/public/virus.svg',
-								scaledSize: new window.google.maps.Size(20, 20),
-								// scale: 10,
-								fillColor: 'red',
-								fillOpacity: 0.2,
-								strokeColor: 'white',
-								strokeWeight: 0.5
-							}}
-						/>
-					))}
-					{clickedCountry &&
-					clickedCountry.confirmed && (
-						<InfoWindow
-							onCloseClick={() => {
-								setClickedCountry(null);
-							}}
-							position={{
-								lat: Number(codeToLatLng[clickedCountry.iso2]['coordinate'][0]),
-								lng: Number(codeToLatLng[clickedCountry.iso2]['coordinate'][1])
-							}}
-						>
-							<div>
-								<h2>{clickedCountry.name}</h2>
-								<p>Cofirmed: {clickedCountry.confirmed.value}</p>
-								<p>Recovered: {clickedCountry.recovered.value}</p>
-								<p>Deaths: {clickedCountry.deaths.value}</p>
-							</div>
-						</InfoWindow>
-					)}
-				</GoogleMap>
-			</div>
-		);
-	};
-
-	const Wrapper = withScriptjs(withGoogleMap(GMap));
-
-	return (
-		<div className={styles.wrapControl}>
-			<Wrapper
-				googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process
-					.env.REACT_APP_GOOGLE_KEY}`}
-				loadingElement={<div style={{ height: `100%` }} />}
-				containerElement={<div style={{ height: `100%` }} />}
-				mapElement={<div style={{ height: `100%` }} />}
-			/>
-		</div>
-	);
+                {selected && (<InfoWindow position={selected.location} onCloseClick={()=>{setSelected(null)}}>
+                    <div>
+                    <h1>HEY</h1>
+                    </div>                
+                    </InfoWindow>)}
+            </GoogleMap>
+        </div>
+    );
 };
+
+
 
 export default Map;

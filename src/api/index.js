@@ -49,3 +49,39 @@ export const fetchCountries = async () => {
 		return error;
 	}
 };
+
+export const fetchCompleteData = async () => {
+	try{
+		const { data: { countries } } = await axios.get(`${url}/countries`);
+		let countriesData = [];
+		countries.forEach(async (country) => {
+			let response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {params: {
+				address: country.name,
+				key: process.env.REACT_APP_GOOGLE_KEY
+			}});
+			if(response.status === 200 && response.data.results.length > 0){
+				console.log('res:', response, response.status);
+				let { lat, lng } = response.data.results[0].geometry.location;
+				let countryCases = await axios.get(`${url}/countries/${country.name}`);
+				// console.log(`${country.name}: (${lat}, ${lng}), ${countryCases}`)
+				if(country && !isNaN(lat) && countryCases){
+					countriesData.push({name: country.name, location: {lat: lat, lng: lng}, cases: countryCases});
+				}
+			} else {
+				// console.log('error:', response)
+			}
+		});
+		return countriesData;
+	} catch(error) {
+		console.log(error);
+	}
+	// const NodeGeocoder = require('node-geocoder');
+	// const options = {
+	// provider: 'google',
+	// apiKey: process.env.REACT_APP_GOOGLE_KEY,
+	// formatter: null
+	// };
+	// const geocoder = NodeGeocoder(options);
+
+	
+}
