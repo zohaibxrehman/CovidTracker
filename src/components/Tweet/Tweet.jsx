@@ -11,7 +11,7 @@ const Tweet = () => {
 					<TwitterTimelineEmbed sourceType="profile" screenName="WHO" options={{height: 500}}/>
 				</Grid>
 				<Grid item md={6} xs={12}>
-					<TwitterTimelineEmbed sourceType="profile" screenName="CNN" options={{height: 500}}/>
+					<TwitterTimelineEmbed sourceType="profile" screenName="PandemicCovid20" options={{height: 500}}/>
 				</Grid>
 			</Grid>
 		</div>
