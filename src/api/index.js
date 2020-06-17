@@ -60,12 +60,13 @@ export const fetchCompleteData = async () => {
 				key: process.env.REACT_APP_GOOGLE_KEY
 			}});
 			if(response.status === 200 && response.data.results.length > 0){
-				console.log('res:', response, response.status);
+				// console.log('res:', response, response.status);
 				let { lat, lng } = response.data.results[0].geometry.location;
 				let countryCases = await axios.get(`${url}/countries/${country.name}`);
 				// console.log(`${country.name}: (${lat}, ${lng}), ${countryCases}`)
-				if(country && !isNaN(lat) && countryCases){
-					countriesData.push({name: country.name, location: {lat: lat, lng: lng}, cases: countryCases});
+				if(country && !isNaN(lat) && countryCases && !isNaN(countryCases.data.confirmed.value)){
+					let scale = 2 + Math.log2(countryCases.data.confirmed.value);
+					countriesData.push({name: country.name, location: {lat: lat, lng: lng}, ...countryCases.data, scale: scale});
 				}
 			} else {
 				// console.log('error:', response)
@@ -74,14 +75,5 @@ export const fetchCompleteData = async () => {
 		return countriesData;
 	} catch(error) {
 		console.log(error);
-	}
-	// const NodeGeocoder = require('node-geocoder');
-	// const options = {
-	// provider: 'google',
-	// apiKey: process.env.REACT_APP_GOOGLE_KEY,
-	// formatter: null
-	// };
-	// const geocoder = NodeGeocoder(options);
-
-	
+	}	
 }
