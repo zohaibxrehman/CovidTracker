@@ -13,7 +13,7 @@ import { fetchCompleteData } from '../../api';
 
 const center = { lat: 8, lng: -1 };
 const style = {width:'40vw', height:'50vh'};
-const options = {styles: mapStyles, disableDefaultUI: true, zoomControl: true};
+const options = {styles: mapStyles, disableDefaultUI: true, zoomControl: true, fullscreenControl: true};
 
 const Map = () => {
     const [countriesData, setCountriesData] = useState([]);
