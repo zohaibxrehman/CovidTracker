@@ -71,9 +71,9 @@ class Map extends React.Component {
 							>
 								<div>
 									<h2>{selected.name}</h2>
-									<p>Infected: {selected.confirmed.value}</p>
-									<p>Recovered: {selected.recovered.value}</p>
-									<p>Deaths: {selected.deaths.value}</p>
+									<p>Infected: {selected.confirmed.value.toLocaleString('en')}</p>
+									<p>Recovered: {selected.recovered.value.toLocaleString('en')}</p>
+									<p>Deaths: {selected.deaths.value.toLocaleString('en')}</p>
 								</div>
 							</InfoWindow>
 						)}
