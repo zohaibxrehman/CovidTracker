@@ -10,23 +10,40 @@ const style = { width: '90%', height: '50vh', margin: 'auto' };
 const options = { styles: mapStyles, disableDefaultUI: true, zoomControl: true, fullscreenControl: true };
 const googleMapsApiKey = process.env.REACT_APP_GOOGLE_KEY;
 
-class Map2 extends React.Component {
+class Map extends React.Component {
 	constructor() {
 		super();
-		this.state = { countriesData: [], selected: null };
+		this.state = { countriesData: [], selected: null, hasTouched: false };
 	}
 
 	async componentDidMount() {
 		const data = await fetchCompleteData();
-		this.setState({ countriesData: data });
+
+		setTimeout(() => {
+			this.setState({ countriesData: data });
+		}, 3000);
 	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return this.state !== nextState;
+	}
+
 	render() {
 		const { selected, countriesData } = this.state;
-
 		return (
 			<div className={divStyles.wrapControl}>
 				<LoadScript googleMapsApiKey={googleMapsApiKey}>
-					<GoogleMap mapContainerStyle={style} zoom={3} center={center} options={options}>
+					<GoogleMap
+						mapContainerStyle={style}
+						zoom={3}
+						center={center}
+						options={options}
+						onMouseOver={() => {
+							if (!this.state.hasTouched) {
+								this.setState({ hasTouched: true });
+							}
+						}}
+					>
 						{countriesData.map((country, id) => (
 							<Marker
 								key={id}
@@ -67,4 +84,4 @@ class Map2 extends React.Component {
 	}
 }
 
-export default Map2;
+export default Map;
