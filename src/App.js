@@ -30,7 +30,7 @@ class App extends React.Component {
 		return (
 			<div className={styles.container}>
 				<Grid container spacing={1}>
-					<Grid item lg={7} md={12}>
+					<Grid item lg={6} md={12}>
 						<div className={styles.container}>
 							<img className={styles.image} src={image} alt="COVID-19" />
 							<CountryPicker handleCountryChange={this.handleCountryChange} />
@@ -38,7 +38,7 @@ class App extends React.Component {
 							<Chart data={data} country={country} />
 						</div>
 					</Grid>
-					<Grid item lg={5} md={12}>
+					<Grid item lg={6} md={12}>
 						<Grid container spacing={1}>
 							<Grid item md={12} style={{ width: '100%' }}>
 								<Map />
