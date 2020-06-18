@@ -1,12 +1,4 @@
 .wrapControl {
-	width: 90% !important;
-	height: 50%;
-	margin: auto auto !important;
-}
-
-@media only screen and (max-width: 770px) {
-	.wrapControl {
-		height: 500px !important;
-		width: 80% !important;
-	}
+	width: 100% !important;
+	height: 100% !important;
 }
