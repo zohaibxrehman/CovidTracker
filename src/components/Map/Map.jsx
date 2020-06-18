@@ -6,7 +6,7 @@ import divStyles from './Map.module.css';
 import { fetchCompleteData } from '../../api';
 
 const center = { lat: 8, lng: -1 };
-const style = { width: '95%', height: '50vh' };
+const style = { width: '95%', height: '50vh', margin: 'auto' };
 const options = { styles: mapStyles, disableDefaultUI: true, zoomControl: true, fullscreenControl: true };
 const googleMapsApiKey = process.env.REACT_APP_GOOGLE_KEY;
 
