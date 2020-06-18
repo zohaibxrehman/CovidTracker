@@ -6,7 +6,7 @@ import styles from './Tweet.module.css';
 const Tweet = () => {
 	return (
 		<div className={styles.container}>
-			<Grid container spacing={3}>
+			<Grid container spacing={2}>
 				<Grid item md={6} xs={12}>
 					<TwitterTimelineEmbed sourceType="profile" screenName="WHO" options={{ height: '45vh' }} />
 				</Grid>

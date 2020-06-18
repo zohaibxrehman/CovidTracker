@@ -29,7 +29,7 @@ class App extends React.Component {
 		const { data, country } = this.state;
 		return (
 			<div className={styles.container}>
-				<Grid container spacing={1}>
+				<Grid container spacing={2}>
 					<Grid item lg={6} md={12}>
 						<div className={styles.container}>
 							<img className={styles.image} src={image} alt="COVID-19" />
@@ -39,7 +39,7 @@ class App extends React.Component {
 						</div>
 					</Grid>
 					<Grid item lg={6} md={12}>
-						<Grid container spacing={1}>
+						<Grid container spacing={2}>
 							<Grid item md={12} style={{ width: '100%' }}>
 								<Map />
 							</Grid>
