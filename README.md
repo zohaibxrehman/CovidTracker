@@ -37,7 +37,7 @@ Install create-react-app npm package globally. This will help to easily run the 
 npm install -g create-react-app
 ```
 
-## Install dependencies and run
+### Install dependencies and run
 
 Clone the project onto your local machine.
 
