@@ -12,9 +12,10 @@ The web-page has been designed to be mobile-friendly.
 
 <img src="https://i.imgur.com/ZT9zl2r.png" height='500px'/>
 
-### Core build tools:
+## Core languages and tools:
 
 ```
+Node.js
 React.js
 Chart.js
 Axios
