@@ -37,6 +37,8 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
           />
         ) : null
     );
+
+    let title = country ? `Current state in ${country}` : 'Current state in the world.'
     
     const barChart = (
         confirmed ? (
@@ -53,7 +55,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
             }}
             options={{
               legend: { display: false },
-              title: { display: true, text: `Current state in ${country}` },
+              title: { display: true, text: title},
             }}
           />
         ) : null
@@ -61,7 +63,8 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
     return (
         <div className={styles.container}>
-          {country ? barChart : lineChart}
+          {/* {country ? barChart : lineChart} */}
+          {barChart}
         </div>
       );
 }
